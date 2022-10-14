@@ -1,15 +1,11 @@
 FROM alpine:3.16
-COPY builder/build /root/build
+COPY builder/chia-blockchain /opt/chia-blockchain
 RUN apk --update --no-cache add python3 gmp
-ENV VIRTUAL_ENV=/root/build/chia-blockchain/venv
+ENV VIRTUAL_ENV=/opt/chia-blockchain/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-ENV PLOT_DIR=""
-ENV KEYS=""
-ENV DOTCHIA=""
+ENV PLOT_DIR="/media/plots"
+ENV KEYS="/root/.chiakey"
 EXPOSE 8555/tcp
 EXPOSE 8444/tcp
-ENV PLOT_DIR="/mnt/chia"
-ENV KEYS=""
-ENV DOTCHIA=""
 COPY farmer.sh .
 CMD ["/bin/ash","farmer.sh"]

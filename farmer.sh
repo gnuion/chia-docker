@@ -1,8 +1,5 @@
 #!/bin/ash
 
-cd /chia-blockchain
-. ./activate
-
 echo "Initializing chia"
 chia init --fix-ssl-permissions
 

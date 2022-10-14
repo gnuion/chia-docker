@@ -1,0 +1,12 @@
+  chia:
+    image: gnuion/chia-docker:py3.10
+    volumes:
+      - /root/.chiakey:/root/.chiakey
+      - /media/db/chia:/root/.chia
+      - /media/plots:/media/plots:ro
+    environment:
+      - PLLOTS_DIR="/media/plots"
+      - KEYS=/root/.chiakey
+    ports:
+      - 6888:6888
+    restart: always
