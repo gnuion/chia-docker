@@ -1,12 +1,12 @@
 set -e
 
-docker build --tag gnuion/chia-builder:py3.10 .
+# docker build --tag gnuion/chia-builder:py3.10 .
 
-if [ -d "chia-blockchain" ]; then rm -Rf chia-blockchain; fi
+if [ -d "stai-blockchain" ]; then rm -Rf stai-blockchain; fi
 
-mkdir chia-blockchain && cd chia-blockchain
-git clone --depth 1 https://github.com/Chia-Network/chia-blockchain.git -b latest .
-git submodule update --init mozilla-ca
+mkdir stai-blockchain && cd stai-blockchain
 
-docker run -v $PWD:/opt/chia-blockchain gnuion/chia-builder:py3.10 ash -c "\
-cd /opt/chia-blockchain && sh install.sh"
+git clone https://github.com/STATION-I/stai-blockchain.git
+
+docker run -v $PWD:/opt/stai-blockchain gnuion/chia-builder:py3.10 ash -c "\
+cd /opt/stai-blockchain && sh install.sh"
