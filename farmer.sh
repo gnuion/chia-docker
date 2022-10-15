@@ -6,11 +6,10 @@ chia init --fix-ssl-permissions
 echo "Adding keys from ${KEYS}"
 cat ${KEYS} | chia keys add
 
-for plot in ${PLOTS_DIR/*}
+for plot in $PLOTS_DIR/*
 do
-  echo "Adding plot directory ${p}"
-  mkdir -p ${p}
-  chia plots add -d ${p}
+  echo "Adding plot directory ${plot}"
+  chia plots add -d ${plot}
 done
 
 echo "Replacing localhost with 127.0.0.1"
@@ -23,5 +22,5 @@ while [ 1 ]
 do
   chia farm summary
   chia show -sc
-  sleep 1h
+  sleep 5m
 done
